@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
 	}
 
 	//TODO: declare a static array "large enough" to hold as many integers as we'll need
-	int array[size];
+	int array[10][10];
 
 	//TODO (Activity 3): change your delcaration and initialization to use
 	// a dynamic array and malloc instead
@@ -35,14 +35,14 @@ int main(int argc, char** argv) {
 	readInArray(array, size);
 
 	//TODO: pass the appropriate variables to your functions here
-  min = getMin(array, size);
-  max = getMax(array, size);
-  mean = getMean(array, size);
-  printArray(array, size);
+//  min = getMin(array, size);
+//  max = getMax(array, size);
+//  mean = getMean(array, size);
+//  printArray(array, size);
 
-  printf("Min: %d\n", min);
-  printf("Max: %d\n", max);
-  printf("Mean: %.2f\n", mean);
+//  printf("Min: %d\n", min);
+//  printf("Max: %d\n", max);
+//  printf("Mean: %.2f\n", mean);
 
   return 0;
 }
