@@ -1,47 +1,54 @@
-/**
- * Statistics main driver program
- */
-#include <stdlib.h>
-#include <stdio.h>
+#include<stdlib.h>
+#include<stdio.h>
 
 #include "stats.h"
 
-#define SIZE 500
+//TODO: fix the error in this function
+void readInArray(int *arr, int size) {
+  int i;
+  printf("Enter your list of numbers: ");
+  for (i = 0; i < size; i++) {
+    scanf("%d", &arr[i]);
+  }
+  return;
+}
 
-int main(int argc, char** argv) {
+int * generateRandomArray(int size) {
+  int * randomArr = malloc(sizeof(int) * size);
+  for(int i=0; i<size; i++) {
+    randomArr[i] = rand();
+  }
+  return randomArr;
+}
 
-  const int MAX_SIZE = 100;
-  //seed the random number generator with the current time
-  srand(time(NULL));
+void printArray(const int *arr, int size) {
+  printf("[");
+  for(int i=0; i<size-1; i++) {
+    printf("%d, ", arr[i]);
+  }
+  printf("%d ]\n ", arr[size-1]);
+}
 
-  int min, max, size;
-  double mean;
-
-  printf("Enter the amount of numbers you'd like to find the stats for: ");
-  scanf("%d", &size);
-
-  if(size > MAX_SIZE) {
-    printf("ERROR: program does not support that many integers!");
-	  exit(1);
+double getMean(int *arr, int size) {
+	double sum = 0;
+	for(int i=0; i<size-1; i++){
+		sum += arr[i];
 	}
+	return sum/size;
+}
 
-	//TODO: declare a static array "large enough" to hold as many integers as we'll need
-	int array[size];
+int getMin(int *arr, int size) {
+	int min = arr[0];
+	for(int i=0; i<size-1; i++){
+		if(arr[i] < min){ min = arr[i];}
+	}
+	return min;
+}
 
-	//TODO (Activity 3): change your delcaration and initialization to use
-	// a dynamic array and malloc instead
-
-	//TODO: pass the appropriate variable
-	readInArray(array, size);
-
-	//TODO: pass the appropriate variables to your functions here
-  min = getMin(array, size);
-  max = getMax(array, size);
-  mean = getMean(array, size);
-  printArray(array, size);
-
-  printf("Min: %d\n", min);
-  printf("Max: %d\n", max);
-  printf("Mean: %.2f\n", mean);
-
-  return 0;
+int getMax(int *arr, int size) {
+	int max = arr[0];
+	for(int i=0; i<size-1; i++){
+		if(arr[i] > max){ max = arr[i];}
+	}
+	return max;
+}
